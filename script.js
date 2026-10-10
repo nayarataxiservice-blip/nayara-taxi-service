@@ -2,20 +2,21 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Update copyright year.
+  // 1. Automatically update the copyright year.
   const currentYear = document.getElementById("current-year");
 
   if (currentYear) {
     currentYear.textContent = new Date().getFullYear();
   }
 
-  // 2. Mobile navigation.
+  // 2. Mobile navigation menu.
   const menuToggle = document.querySelector(".menu-toggle");
   const primaryNav = document.getElementById("primary-nav");
 
   if (menuToggle && primaryNav) {
     const setMenuState = (isOpen) => {
       menuToggle.setAttribute("aria-expanded", String(isOpen));
+
       menuToggle.setAttribute(
         "aria-label",
         isOpen ? "Close navigation" : "Open navigation"
@@ -25,27 +26,31 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.toggle("menu-open", isOpen);
     };
 
+    // Open and close the menu when the button is clicked.
     menuToggle.addEventListener("click", (event) => {
       event.preventDefault();
 
-      const currentlyOpen =
+      const isCurrentlyOpen =
         menuToggle.getAttribute("aria-expanded") === "true";
 
-      setMenuState(!currentlyOpen);
+      setMenuState(!isCurrentlyOpen);
     });
 
+    // Close the menu after clicking a navigation link.
     primaryNav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         setMenuState(false);
       });
     });
 
+    // Close the menu when the Escape key is pressed.
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         setMenuState(false);
       }
     });
 
+    // Close the mobile menu when returning to desktop width.
     window.addEventListener("resize", () => {
       if (window.innerWidth > 760) {
         setMenuState(false);
@@ -53,14 +58,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. Set the earliest allowed travel date.
+  // 3. Prevent selecting a travel date in the past.
   const travelDate = document.getElementById("travel-date");
 
   const setMinimumTravelDate = () => {
-    if (!travelDate) return;
+    if (!travelDate) {
+      return;
+    }
 
     const now = new Date();
-
     const year = now.getFullYear();
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const day = String(now.getDate()).padStart(2, "0");
@@ -70,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setMinimumTravelDate();
 
-  // 4. Booking form and WhatsApp enquiry.
+  // 4. Booking form: validate details and open WhatsApp.
   const bookingForm = document.getElementById("booking-form");
   const formError = document.getElementById("form-error");
 
@@ -83,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formError.textContent = "";
       }
 
+      // Check required HTML form fields.
       if (!bookingForm.reportValidity()) {
         return;
       }
@@ -101,23 +108,24 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.get("details") || ""
       ).trim();
 
+      // Display a helpful validation message.
       const showError = (message) => {
         if (formError) {
           formError.textContent = message;
           formError.hidden = false;
           formError.focus();
         } else {
-          alert(message);
+          window.alert(message);
         }
       };
 
-      // Validate required fields.
+      // Validate required booking details.
       if (!name || !phone || !service || !pickup || !destination) {
         showError("Please complete all required fields.");
         return;
       }
 
-      // Validate phone number length.
+      // Validate the contact number.
       const phoneDigits = phone.replace(/\D/g, "");
 
       if (phoneDigits.length < 7 || phoneDigits.length > 15) {
@@ -125,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Prevent past travel dates.
+      // Validate the selected travel date.
       if (date) {
         setMinimumTravelDate();
 
@@ -135,8 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      ```javascript
-      // Create the WhatsApp message.
+      // Prepare the WhatsApp enquiry message.
       const message = [
         "Hello Nayara Taxi Service Mangalore,",
         "",
@@ -153,12 +160,12 @@ document.addEventListener("DOMContentLoaded", () => {
         "Please contact me regarding availability and pricing."
       ].join("\n");
 
+      // Open WhatsApp using the Nayara business number.
       const whatsappURL =
         "https://wa.me/918762578495?text=" +
         encodeURIComponent(message);
 
-      window.open(whatsappURL, "_blank");
-```
+      window.open(whatsappURL, "_blank", "noopener,noreferrer");
     });
   }
 });
