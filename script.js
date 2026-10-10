@@ -9,53 +9,51 @@ document.addEventListener("DOMContentLoaded", () => {
     currentYear.textContent = new Date().getFullYear();
   }
 
+ ```javascript
   // Mobile navigation.
   const menuToggle = document.querySelector(".menu-toggle");
   const primaryNav = document.getElementById("primary-nav");
 
   if (menuToggle && primaryNav) {
-    const closeMenu = () => {
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Open navigation");
-      primaryNav.classList.remove("is-open");
-      document.body.classList.remove("menu-open");
+    const setMenuState = (isOpen) => {
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation" : "Open navigation"
+      );
+
+      primaryNav.classList.toggle("is-open", isOpen);
+      document.body.classList.toggle("menu-open", isOpen);
     };
 
-    const openMenu = () => {
-      menuToggle.setAttribute("aria-expanded", "true");
-      menuToggle.setAttribute("aria-label", "Close navigation");
-      primaryNav.classList.add("is-open");
-      document.body.classList.add("menu-open");
-    };
+    menuToggle.addEventListener("click", (event) => {
+      event.preventDefault();
 
-    menuToggle.addEventListener("click", () => {
       const isOpen =
         menuToggle.getAttribute("aria-expanded") === "true";
 
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
+      setMenuState(!isOpen);
     });
 
-    primaryNav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", closeMenu);
+    primaryNav.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        setMenuState(false);
+      }
     });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
-        closeMenu();
+        setMenuState(false);
       }
     });
 
-    // Close the mobile menu when returning to desktop layout.
     window.addEventListener("resize", () => {
       if (window.innerWidth > 760) {
-        closeMenu();
+        setMenuState(false);
       }
     });
   }
+```
 
   // Prevent selection of a past travel date.
   const travelDate = document.getElementById("travel-date");
