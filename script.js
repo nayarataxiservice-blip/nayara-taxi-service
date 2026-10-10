@@ -1,4 +1,4 @@
-
+```javascript
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     currentYear.textContent = new Date().getFullYear();
   }
 
- ```javascript
   // Mobile navigation.
   const menuToggle = document.querySelector(".menu-toggle");
   const primaryNav = document.getElementById("primary-nav");
@@ -35,25 +34,27 @@ document.addEventListener("DOMContentLoaded", () => {
       setMenuState(!isOpen);
     });
 
-    primaryNav.addEventListener("click", (event) => {
-      if (event.target.closest("a")) {
+    // Close the menu when a navigation link is selected.
+    primaryNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
         setMenuState(false);
-      }
+      });
     });
 
+    // Close the menu with the Escape key.
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         setMenuState(false);
       }
     });
 
+    // Close the menu when returning to desktop layout.
     window.addEventListener("resize", () => {
       if (window.innerWidth > 760) {
         setMenuState(false);
       }
     });
   }
-```
 
   // Prevent selection of a past travel date.
   const travelDate = document.getElementById("travel-date");
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const setMinimumTravelDate = () => {
     if (!travelDate) return;
 
-    // Use the user's local calendar date, not UTC.
+    // Use the local calendar date rather than UTC.
     const now = new Date();
 
     const localDate = [
@@ -75,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setMinimumTravelDate();
 
-  // Booking form: prepare the customer's enquiry in WhatsApp.
+  // Booking form: prepare the enquiry in WhatsApp.
   const bookingForm = document.getElementById("booking-form");
   const formError = document.getElementById("form-error");
 
@@ -88,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formError.textContent = "";
       }
 
-      // Check native HTML validation first.
+      // Check built-in HTML form validation.
       if (!bookingForm.reportValidity()) {
         return;
       }
@@ -107,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.get("details") || ""
       ).trim();
 
-      // Show a helpful validation message.
+      // Display a helpful validation message.
       const showError = (message) => {
         if (formError) {
           formError.textContent = message;
@@ -118,13 +119,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       };
 
-      // Validate required fields, including whitespace-only input.
+      // Validate required fields.
       if (!name || !phone || !service || !pickup || !destination) {
         showError("Please complete all required fields.");
         return;
       }
 
-      // Accept common Indian and international phone formats.
+      // Validate the contact number.
       const phoneDigits = phone.replace(/\D/g, "");
 
       if (phoneDigits.length < 7 || phoneDigits.length > 15) {
@@ -132,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Check the date again in case it was entered manually.
+      // Validate the travel date again before submitting.
       if (date) {
         setMinimumTravelDate();
 
@@ -142,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // Prepare the enquiry message.
+      // Build the WhatsApp enquiry.
       const message = [
         "Hello Nayara Taxi Service Mangalore,",
         "",
@@ -163,9 +164,20 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://wa.me/918762578495?text=" +
         encodeURIComponent(message);
 
-      // Open WhatsApp from the submit action.
-      // The customer must press Send in WhatsApp.
-      window.open(whatsappURL, "_blank");
+      // Open WhatsApp. The customer must press Send.
+      const whatsappWindow = window.open(
+        whatsappURL,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+      // Explain if the browser blocks the new window.
+      if (!whatsappWindow) {
+        showError(
+          "WhatsApp could not open automatically. Please allow pop-ups or contact us directly on +91 87625 78495."
+        );
+      }
     });
   }
 });
+```
