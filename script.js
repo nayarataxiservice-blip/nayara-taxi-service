@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const setMinimumTravelDate = () => {
     if (!travelDate) return;
 
+    // Use the user's local calendar date, not UTC.
     const now = new Date();
 
     const localDate = [
@@ -86,8 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (formError) {
         formError.hidden = true;
+        formError.textContent = "";
       }
 
+      // Check native HTML validation first.
       if (!bookingForm.reportValidity()) {
         return;
       }
@@ -106,15 +109,20 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.get("details") || ""
       ).trim();
 
-      // Basic validation for required fields.
-      if (!name || !phone || !service || !pickup || !destination) {
+      // Show a helpful validation message.
+      const showError = (message) => {
         if (formError) {
-          formError.textContent =
-            "Please complete all required fields.";
+          formError.textContent = message;
           formError.hidden = false;
           formError.focus();
+        } else {
+          alert(message);
         }
+      };
 
+      // Validate required fields, including whitespace-only input.
+      if (!name || !phone || !service || !pickup || !destination) {
+        showError("Please complete all required fields.");
         return;
       }
 
@@ -122,13 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const phoneDigits = phone.replace(/\D/g, "");
 
       if (phoneDigits.length < 7 || phoneDigits.length > 15) {
-        if (formError) {
-          formError.textContent =
-            "Please enter a valid contact number.";
-          formError.hidden = false;
-          formError.focus();
-        }
-
+        showError("Please enter a valid contact number.");
         return;
       }
 
@@ -136,18 +138,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (date) {
         setMinimumTravelDate();
 
-        if (date < travelDate.min) {
-          if (formError) {
-            formError.textContent =
-              "Please select today or a future travel date.";
-            formError.hidden = false;
-            formError.focus();
-          }
-
+        if (travelDate && date < travelDate.min) {
+          showError("Please select today or a future travel date.");
           return;
         }
       }
 
+      // Prepare the enquiry message.
       const message = [
         "Hello Nayara Taxi Service Mangalore,",
         "",
@@ -168,17 +165,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://wa.me/918762578495?text=" +
         encodeURIComponent(message);
 
-      // Open WhatsApp; the customer must press Send there.
-      const whatsappWindow = window.open(
-        whatsappURL,
-        "_blank",
-        "noopener,noreferrer"
-      );
-
-      // Fallback for browsers that block a new window.
-      if (!whatsappWindow) {
-        window.location.href = whatsappURL;
-      }
+      // Open WhatsApp from the submit action.
+      // The customer must press Send in WhatsApp.
+      window.open(whatsappURL, "_blank");
     });
   }
 });
