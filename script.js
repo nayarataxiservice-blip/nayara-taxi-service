@@ -1,14 +1,15 @@
+```javascript
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Update the copyright year.
+  // 1. Update copyright year.
   const currentYear = document.getElementById("current-year");
 
   if (currentYear) {
     currentYear.textContent = new Date().getFullYear();
   }
 
-  // Mobile navigation.
+  // 2. Mobile navigation.
   const menuToggle = document.querySelector(".menu-toggle");
   const primaryNav = document.getElementById("primary-nav");
 
@@ -27,27 +28,24 @@ document.addEventListener("DOMContentLoaded", () => {
     menuToggle.addEventListener("click", (event) => {
       event.preventDefault();
 
-      const isOpen =
+      const currentlyOpen =
         menuToggle.getAttribute("aria-expanded") === "true";
 
-      setMenuState(!isOpen);
+      setMenuState(!currentlyOpen);
     });
 
-    // Close the menu when a navigation link is selected.
     primaryNav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         setMenuState(false);
       });
     });
 
-    // Close the menu with the Escape key.
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         setMenuState(false);
       }
     });
 
-    // Close the menu when returning to desktop layout.
     window.addEventListener("resize", () => {
       if (window.innerWidth > 760) {
         setMenuState(false);
@@ -55,27 +53,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Prevent selection of a past travel date.
+  // 3. Set the earliest allowed travel date.
   const travelDate = document.getElementById("travel-date");
 
   const setMinimumTravelDate = () => {
     if (!travelDate) return;
 
-    // Use the local calendar date rather than UTC.
     const now = new Date();
 
-    const localDate = [
-      now.getFullYear(),
-      String(now.getMonth() + 1).padStart(2, "0"),
-      String(now.getDate()).padStart(2, "0")
-    ].join("-");
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
 
-    travelDate.min = localDate;
+    travelDate.min = `${year}-${month}-${day}`;
   };
 
   setMinimumTravelDate();
 
-  // Booking form: prepare the enquiry in WhatsApp.
+  // 4. Booking form and WhatsApp enquiry.
   const bookingForm = document.getElementById("booking-form");
   const formError = document.getElementById("form-error");
 
@@ -88,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
         formError.textContent = "";
       }
 
-      // Check built-in HTML form validation.
       if (!bookingForm.reportValidity()) {
         return;
       }
@@ -107,7 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.get("details") || ""
       ).trim();
 
-      // Display a helpful validation message.
       const showError = (message) => {
         if (formError) {
           formError.textContent = message;
@@ -124,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Validate the contact number.
+      // Validate phone number length.
       const phoneDigits = phone.replace(/\D/g, "");
 
       if (phoneDigits.length < 7 || phoneDigits.length > 15) {
@@ -132,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Validate the travel date again before submitting.
+      // Prevent past travel dates.
       if (date) {
         setMinimumTravelDate();
 
@@ -142,19 +135,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // Build the WhatsApp enquiry.
+      // Create the WhatsApp message.
       const message = [
         "Hello Nayara Taxi Service Mangalore,",
         "",
         "I would like to enquire about a taxi.",
         "",
-        "Name: " + name,
-        "Contact number: " + phone,
-        "Travel service: " + service,
-        "Pickup location: " + pickup,
-        "Destination: " + destination,
-        "Travel date: " + (date || "Not specified"),
-        "Additional details: " + (details || "None"),
+        `Name: ${name}`,
+        `Contact number: ${phone}`,
+        `Travel service: ${service}`,
+        `Pickup location: ${pickup}`,
+        `Destination: ${destination}`,
+        `Travel date: ${date || "Not specified"}`,
+        `Additional details: ${details || "None"}`,
         "",
         "Please contact me regarding availability and pricing."
       ].join("\n");
@@ -164,18 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
         encodeURIComponent(message);
 
       // Open WhatsApp. The customer must press Send.
-      const whatsappWindow = window.open(
-        whatsappURL,
-        "_blank",
-        "noopener,noreferrer"
-      );
-
-      // Explain if the browser blocks the new window.
-      if (!whatsappWindow) {
-        showError(
-          "WhatsApp could not open automatically. Please allow pop-ups or contact us directly on +91 87625 78495."
-        );
-      }
+      window.open(whatsappURL, "_blank");
     });
   }
 });
