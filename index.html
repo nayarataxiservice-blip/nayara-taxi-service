@@ -67,8 +67,17 @@
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="#home" aria-label="Nayara Taxi Service Mangalore home">
-         <img src="assets/logo.png" alt="Nayara Taxi Service Mangalore logo">
+        <img
+          src="assets/logo.png"
+          alt="Nayara Taxi Service Mangalore"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <span class="brand-copy" style="display:none; flex-direction:column;">
+          <strong>NAYARA</strong>
+          <small>TAXI SERVICE MANGALORE</small>
+        </span>
       </a>
+
 
       <button class="menu-toggle" type="button"
         aria-label="Open navigation" aria-expanded="false"
