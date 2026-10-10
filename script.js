@@ -135,19 +135,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
+      ```javascript
       // Create the WhatsApp message.
       const message = [
         "Hello Nayara Taxi Service Mangalore,",
         "",
         "I would like to enquire about a taxi.",
         "",
-        `Name: ${name}`,
-        `Contact number: ${phone}`,
-        `Travel service: ${service}`,
-        `Pickup location: ${pickup}`,
-        `Destination: ${destination}`,
-        `Travel date: ${date || "Not specified"}`,
-        `Additional details: ${details || "None"}`,
+        "Name: " + name,
+        "Contact number: " + phone,
+        "Travel service: " + service,
+        "Pickup location: " + pickup,
+        "Destination: " + destination,
+        "Travel date: " + (date || "Not specified"),
+        "Additional details: " + (details || "None"),
         "",
         "Please contact me regarding availability and pricing."
       ].join("\n");
@@ -156,8 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://wa.me/918762578495?text=" +
         encodeURIComponent(message);
 
-      // Open WhatsApp. The customer must press Send.
       window.open(whatsappURL, "_blank");
+```
     });
   }
 });
