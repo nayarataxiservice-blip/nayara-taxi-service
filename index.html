@@ -4,17 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102746">
+  <meta name="robots" content="index, follow">
 
   <title>Nayara Taxi Service Mangalore | Taxi & Travel</title>
-  <meta name="description" content="Contact Nayara Taxi Service Mangalore for taxi bookings and travel enquiries. Call or WhatsApp us to plan your journey from Mangalore.">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#102746">
+  <meta name="description" content="Contact Nayara Taxi Service Mangalore for local taxi travel, airport transfers, outstation journeys and Karnataka sightseeing tours. Call or WhatsApp to enquire.">
   <link rel="canonical" href="https://nayarataxiservicemangalore.com/">
 
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nayara Taxi Service Mangalore">
   <meta property="og:title" content="Nayara Taxi Service Mangalore">
   <meta property="og:description" content="Thoughtful travel. Comfortable journeys. Contact Nayara Taxi Service Mangalore for your next trip.">
   <meta property="og:url" content="https://nayarataxiservicemangalore.com/">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,14 +34,22 @@
     "url": "https://nayarataxiservicemangalore.com/",
     "telephone": "+91-8762578495",
     "email": "nayarataxiservice@gmail.com",
-    "areaServed": {
-      "@type": "City",
-      "name": "Mangalore",
-      "containedInPlace": {
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Mangalore",
+      "addressRegion": "Karnataka",
+      "addressCountry": "IN"
+    },
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Mangalore"
+      },
+      {
         "@type": "State",
         "name": "Karnataka"
       }
-    }
+    ]
   }
   </script>
 </head>
@@ -56,7 +67,6 @@
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="./" aria-label="Nayara Taxi Service Mangalore home">
-        <!-- Add your official SVG logo here later. -->
         <span class="brand-symbol" aria-hidden="true">N</span>
         <span class="brand-copy">
           <span class="brand-name">NAYARA</span>
@@ -76,14 +86,15 @@
         <a href="#services">Services</a>
         <a href="#journeys">Travel with us</a>
         <a href="#contact">Contact</a>
-        <a class="nav-cta" href="https://wa.me/918762578495?text=Hello%20Nayara%20Taxi%20Service%2C%20I%20would%20like%20to%20enquire%20about%20a%20taxi." target="_blank" rel="noopener noreferrer">Enquire now <span aria-hidden="true">↗</span></a>
+        <a class="nav-cta" href="https://wa.me/918762578495?text=Hello%20Nayara%20Taxi%20Service%2C%20I%20would%20like%20to%20enquire%20about%20a%20taxi."
+          target="_blank" rel="noopener noreferrer">Enquire now <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
 
   <main id="main">
     <section class="hero" id="home">
-      <div class="hero-image" role="img" aria-label="Car travelling along a scenic road"></div>
+      <div class="hero-image" role="img" aria-label="Scenic road through the countryside"></div>
       <div class="hero-shade"></div>
 
       <div class="container hero-content">
@@ -94,7 +105,9 @@
           Mangalore. Tell us where you want to go, and let's plan your journey.
         </p>
         <div class="hero-actions">
-          <a class="button button-gold" href="https://wa.me/918762578495?text=Hello%20Nayara%20Taxi%20Service%2C%20I%20would%20like%20to%20book%20a%20taxi." target="_blank" rel="noopener noreferrer">
+          <a class="button button-gold"
+            href="https://wa.me/918762578495?text=Hello%20Nayara%20Taxi%20Service%2C%20I%20would%20like%20to%20book%20a%20taxi."
+            target="_blank" rel="noopener noreferrer">
             Plan your journey <span aria-hidden="true">↗</span>
           </a>
           <a class="button button-outline-light" href="#services">Explore our services</a>
@@ -104,7 +117,6 @@
           <span>Mangalore, Karnataka, India</span>
         </div>
       </div>
-
       <div class="hero-index" aria-hidden="true">N / 01</div>
     </section>
 
@@ -152,7 +164,8 @@
               <svg viewBox="0 0 48 48" fill="none">
                 <path d="M8 34V20l4-8h24l4 8v14H8Z" stroke="currentColor" stroke-width="1.7"/>
                 <path d="M12 20h24M15 12l-3 8m21-8 3 8M8 27h32M14 34v4m20-4v4" stroke="currentColor" stroke-width="1.7"/>
-                <circle cx="15" cy="28" r="2" fill="currentColor"/><circle cx="33" cy="28" r="2" fill="currentColor"/>
+                <circle cx="15" cy="28" r="2" fill="currentColor"/>
+                <circle cx="33" cy="28" r="2" fill="currentColor"/>
               </svg>
             </div>
             <h3>Local Travel</h3>
@@ -195,7 +208,7 @@
                 <path d="M8 40h32" stroke="currentColor" stroke-width="1.7"/>
               </svg>
             </div>
-            <h3>Tour & Sightseeing</h3>
+            <h3>Tour &amp; Sightseeing</h3>
             <p>Ask us about arranging a taxi for sightseeing and exploring destinations around Karnataka.</p>
             <a href="#contact" class="card-link">Discuss a tour <span>↗</span></a>
           </article>
@@ -205,18 +218,15 @@
     </section>
 
     <section class="journeys section-pad" id="journeys">
-      <div class="journey-image" role="img" aria-label="Scenic countryside road surrounded by green hills"></div>
+      <div class="journey-image" role="img" aria-label="Countryside road surrounded by green hills"></div>
       <div class="journey-overlay"></div>
       <div class="container journey-content">
         <div class="section-kicker light-kicker"><span class="kicker-line"></span><span>BEYOND THE EVERYDAY</span></div>
         <h2>Take the scenic<br>route to <em>something new.</em></h2>
-        <p>
-          From coastal escapes to countryside adventures, start with your
-          destination. We'll help you discuss the travel arrangements.
-        </p>
-        <a class="button button-gold" href="https://wa.me/918762578495?text=Hello%20Nayara%2C%20I%20would%20like%20to%20discuss%20a%20tour%20or%20sightseeing%20trip." target="_blank" rel="noopener noreferrer">
-          Discuss a trip <span aria-hidden="true">↗</span>
-        </a>
+        <p>From coastal escapes to countryside adventures, start with your destination. We'll help you discuss the travel arrangements.</p>
+        <a class="button button-gold"
+          href="https://wa.me/918762578495?text=Hello%20Nayara%2C%20I%20would%20like%20to%20discuss%20a%20tour%20or%20sightseeing%20trip."
+          target="_blank" rel="noopener noreferrer">Discuss a trip <span aria-hidden="true">↗</span></a>
       </div>
       <span class="journey-side-label" aria-hidden="true">EXPLORE KARNATAKA</span>
     </section>
@@ -226,7 +236,7 @@
         <div class="booking-copy">
           <div class="section-kicker"><span class="kicker-line"></span><span>LET'S GET YOU MOVING</span></div>
           <h2>Where would you<br>like to <em>go?</em></h2>
-          <p>Send us your travel details. We'll get back to you to discuss your enquiry.</p>
+          <p>Send us your travel details. WhatsApp will open with your enquiry ready to review and send.</p>
 
           <div class="contact-methods">
             <a class="contact-method" href="tel:+918762578495">
@@ -249,11 +259,11 @@
           <div class="form-row">
             <div class="form-field">
               <label for="customer-name">Your name</label>
-              <input id="customer-name" name="name" type="text" placeholder="Enter your name" autocomplete="name" required>
+              <input id="customer-name" name="name" type="text" placeholder="Enter your name" autocomplete="name" maxlength="100" required>
             </div>
             <div class="form-field">
               <label for="customer-phone">Phone number</label>
-              <input id="customer-phone" name="phone" type="tel" placeholder="Your contact number" autocomplete="tel" required>
+              <input id="customer-phone" name="phone" type="tel" placeholder="Your contact number" autocomplete="tel" maxlength="30" required>
             </div>
           </div>
 
@@ -261,22 +271,22 @@
             <label for="travel-type">What do you need?</label>
             <select id="travel-type" name="service" required>
               <option value="">Choose a travel service</option>
-              <option>Local travel</option>
-              <option>Airport transfer</option>
-              <option>Outstation travel</option>
-              <option>Tour or sightseeing</option>
-              <option>Other enquiry</option>
+              <option value="Local travel">Local travel</option>
+              <option value="Airport transfer">Airport transfer</option>
+              <option value="Outstation travel">Outstation travel</option>
+              <option value="Tour or sightseeing">Tour or sightseeing</option>
+              <option value="Other enquiry">Other enquiry</option>
             </select>
           </div>
 
           <div class="form-row">
             <div class="form-field">
               <label for="pickup">Pickup location</label>
-              <input id="pickup" name="pickup" type="text" placeholder="Where from?" required>
+              <input id="pickup" name="pickup" type="text" placeholder="Where from?" maxlength="200" required>
             </div>
             <div class="form-field">
               <label for="destination">Destination</label>
-              <input id="destination" name="destination" type="text" placeholder="Where to?" required>
+              <input id="destination" name="destination" type="text" placeholder="Where to?" maxlength="200" required>
             </div>
           </div>
 
@@ -287,13 +297,13 @@
 
           <div class="form-field">
             <label for="extra-details">Additional details (optional)</label>
-            <textarea id="extra-details" name="details" rows="3" placeholder="Passengers, return journey or other requirements"></textarea>
+            <textarea id="extra-details" name="details" rows="3" maxlength="1000" placeholder="Passengers, return journey or other requirements"></textarea>
           </div>
 
           <button class="button button-navy form-submit" type="submit">
             Send enquiry on WhatsApp <span aria-hidden="true">↗</span>
           </button>
-          <p class="form-note">This form opens WhatsApp with your enquiry details. It does not send automatically.</p>
+          <p class="form-note">WhatsApp opens with your message. You must press Send in WhatsApp to submit it.</p>
           <p class="form-error" id="form-error" role="alert" hidden>Please check your details and try again.</p>
         </form>
       </div>
@@ -311,7 +321,7 @@
   <footer class="site-footer">
     <div class="container footer-main">
       <div class="footer-brand">
-        <a class="brand brand-footer" href="./">
+        <a class="brand brand-footer" href="./" aria-label="Nayara Taxi Service Mangalore home">
           <span class="brand-symbol" aria-hidden="true">N</span>
           <span class="brand-copy">
             <span class="brand-name">NAYARA</span>
@@ -344,7 +354,9 @@
     </div>
   </footer>
 
-  <a class="floating-whatsapp" href="https://wa.me/918762578495?text=Hello%20Nayara%20Taxi%20Service%2C%20I%20have%20a%20travel%20enquiry." target="_blank" rel="noopener noreferrer" aria-label="Contact Nayara on WhatsApp">
+  <a class="floating-whatsapp"
+    href="https://wa.me/918762578495?text=Hello%20Nayara%20Taxi%20Service%2C%20I%20have%20a%20travel%20enquiry."
+    target="_blank" rel="noopener noreferrer" aria-label="Contact Nayara on WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.5 0 .2 5.3.2 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a12 12 0 0 0 5.7 1.5h.1c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.3-6.2-3.6-8.4ZM12.1 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.4 4.7Zm5.4-7.3c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.2-.4-2.3-1.4-.9-.8-1.5-1.7-1.7-2-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.6-.1-.2-.7-1.6-1-2.1-.2-.5-.5-.4-.7-.4h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.6s1.2 3 1.3 3.2c.2.2 2.3 3.5 5.6 4.9.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.1-1.4-.1-.1-.3-.2-.6-.3Z"/>
     </svg>
