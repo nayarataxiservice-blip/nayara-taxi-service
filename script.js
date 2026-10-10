@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const month = String(now.getMonth() + 1).padStart(2, "0");
     const day = String(now.getDate()).padStart(2, "0");
 
-    travelDate.min = `${year}-${month}-${day}`;
+     travelDate.min = year + "-" + month + "-" + day;
   };
 
   setMinimumTravelDate();
